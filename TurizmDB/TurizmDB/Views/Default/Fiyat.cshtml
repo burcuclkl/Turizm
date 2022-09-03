@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Fiyat";
+    Layout = "~/Views/_MainLayout.cshtml";
+}
+
+<section class="content-header">
+    <h3>Fiyat Listesi</h3>
+    <small class="text-primary">
+        <i class="fa fa-info-circle"></i>
+        Fiyat Ekle veya Güncelle
+    </small>
+</section>
+<section>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Varış Noktadı Id</th>
+                <th>Araç Id</th>
+                <th>Fiyat</th>
+                <th>Güncelle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Fiyatlar fiyat in ViewBag.Fiyatlar)
+            {
+                <tr>
+                    <td>@fiyat.FiyatId</td>
+                    <td>@fiyat.VarisNoktaId</td>
+                    <td>@fiyat.AracId</td>
+                    <td>@fiyat.Fiyat</td>
+                    <td class="text-center">
+                        <a href="/Default/UpdateFiyat?id=@fiyat.FiyatId" class="btn btn-sm btn-warning">
+                            <i class="fa fa-recycle"></i>Güncelle
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <hr />
+    <div class="row col-md-12">
+        <a href="/Default/Fiyatlar" class="btn btn-primary">
+            Ekle
+            <i class="fa fa-plus-circle"></i>
+        </a>
+    </div>
+</section>
+

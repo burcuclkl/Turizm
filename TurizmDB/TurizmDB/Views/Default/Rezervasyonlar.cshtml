@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "Rezervasyonlar";
+    Layout = "~/Views/_MainLayout.cshtml";
+}
+
+<section class="content-header">
+    <h3>Rezervasyon Ekle</h3>
+    <small class="text-primary">
+        <i class="fa fa-info-circle"></i>
+        Rezervasyon Ekle 
+    </small>
+</section>
+
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h4 class="card-title">Ekle</h4>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("AddRezervasyon", "Default", FormMethod.Post))
+                    {
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Müşteri Id</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="MusteriId" class="form-control" placeholder="Müşteri ID.." />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Fiyat Id</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="FiyatId" class="form-control" placeholder="Fiyat Id..." />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Transfer Tipi</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="TransferTipi" class="form-control" placeholder="Transfer Tipi..." />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Tarih</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="Tarih" class="form-control" placeholder="Tarih.." />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Saat</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="Saat" class="form-control" placeholder="Saat..." />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Adres</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="Adres" class="form-control" placeholder="Adres..." />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Dönüş Adres</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="DonusAdres" class="form-control" placeholder="Dönüş Adres.." />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Kayıt Adres</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="KayitAdres" class="form-control" placeholder="Kayıt Adres..." />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Ip Adres</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="IpAdres" class="form-control" placeholder="Ip Adres..." />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Çocuk Sayı</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="CocukSayi" class="form-control" placeholder="Çocuk Sayı.." />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Çocuk Koltuk</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="CocukKoltuk" class="form-control" placeholder="Çocuk Koltuk..." />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Varış Saati</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="VarisSaati" class="form-control" placeholder="Varış Saati..." />
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Dönüş Saati</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="DonusSaati" class="form-control" placeholder="Dönüş Saati.." />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Uçuş No</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="UcusNo" class="form-control" placeholder="Uçuş No..." />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Dönüş Tarihi</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="DonusTarihi" class="form-control" placeholder="Dönüş Tarihi..." />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group float-right">
+                            <button class="btn btn-dark">Ekle</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+</section>
+

@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Rezervasyon";
+    Layout = "~/Views/_MainLayout.cshtml";
+}
+
+<section class="content-header">
+    <h3>Rezervasyon Listesi</h3>
+    <small class="text-primary">
+        <i class="fa fa-info-circle"></i>
+        Rezervasyon Ekle
+    </small>
+</section>
+
+
+<section>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Müsteri Id</th>
+                <th>Fiyat Id</th>
+                <th>Transfer Tipi</th>
+                <th>Tarih</th>
+                <th>Saat</th>
+                <th>Adres</th>
+                <th>Dönüş Adres</th>
+                <th>Kayıt Adres</th>
+                <th>Ip Adres</th>
+                <th>Çocuk Sayisi</th>
+                <th>Çocuk Koltuk</th>
+                <th>Varış Saati</th>
+                <th>Dönüş Saati</th>
+                <th>Uçuş No</th>
+                <th>Dönüş Tarihi</th>
+                <th>Güncelle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Rezervasyon rezervasyon in ViewBag.Rezervasyon)
+            {
+            <tr>
+                <td>@rezervasyon.RezId</td>
+                <td>@rezervasyon.MusteriId</td>
+                <td>@rezervasyon.FiyatId</td>
+                <td>@rezervasyon.TransferTipi</td>
+                <td>@rezervasyon.Tarih</td>
+                <td>@rezervasyon.Saat</td>
+                <td>@rezervasyon.Adres</td>
+                <td>@rezervasyon.DonusAdres</td>
+                <td>@rezervasyon.KayitAdres</td>
+                <td>@rezervasyon.IpAdres</td>
+                <td>@rezervasyon.CocukSayi</td>
+                <td>@rezervasyon.CocukKoltuk</td>
+                <td>@rezervasyon.VarisSaati</td>
+                <td>@rezervasyon.DonusSaati</td>
+                <td>@rezervasyon.UcusNo</td>
+                <td>@rezervasyon.DonusTarihi</td>
+                <td class="text-center">
+                    <a href="/Default/UpdateMusteri?id=@rezervasyon.RezId" class="btn btn-sm btn-warning">
+                        <i class="fa fa-recycle"></i>Güncelle
+                    </a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <hr />
+    <div class="row col-md-12">
+        <a href="/Default/Rezervasyonlar" class="btn btn-primary">
+            Ekle
+            <i class="fa fa-plus-circle"></i>
+        </a>
+    </div>
+</section>
+

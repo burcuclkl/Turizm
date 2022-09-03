@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Müsteri";
+    Layout = "~/Views/_MainLayout.cshtml";
+}
+
+    <section class="content-header">
+        <h3>Müşteri Listesi</h3>
+        <small class="text-primary">
+            <i class="fa fa-info-circle"></i>
+            Müşteri Ekle veya Güncelle
+        </small>
+    </section>
+
+
+    <section>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Adı</th>
+                    <th>Soyadı</th>
+                    <th>Email</th>
+                    <th>Ev Tel</th>
+                    <th>Cep Tel</th>
+                    <th>Ev Adres</th>
+                    <th>Güncelle</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Musteri musteri in ViewBag.Musteri)
+                {
+                    <tr>
+                        <td>@musteri.MusteriId</td>
+                        <td>@musteri.Adi</td>
+                        <td>@musteri.Soyadi</td>
+                        <td>@musteri.Email</td>
+                        <td>@musteri.EvTel</td>
+                        <td>@musteri.CepTel</td>
+                        <td>@musteri.EvAdresi</td>
+                        <td class="text-center">
+                            <a href="/Default/UpdateMusteri?id=@musteri.MusteriId" class="btn btn-sm btn-warning">
+                                <i class="fa fa-recycle"></i>Güncelle
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <hr />
+        <div class="row col-md-12">
+            <a href="/Default/Müsteriler" class="btn btn-primary">
+                Ekle
+                <i class="fa fa-plus-circle"></i>
+            </a>
+        </div>
+    </section>

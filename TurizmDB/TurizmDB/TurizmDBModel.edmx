@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TurizmDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Araclar">
+          <Key>
+            <PropertyRef Name="AracId" />
+          </Key>
+          <Property Name="AracId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AracTipi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaxKisi" Type="int" Nullable="false" />
+          <Property Name="MinKisi" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fiyatlar">
+          <Key>
+            <PropertyRef Name="FiyatId" />
+          </Key>
+          <Property Name="FiyatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VarisNoktaId" Type="int" Nullable="false" />
+          <Property Name="AracId" Type="int" Nullable="false" />
+          <Property Name="Fiyat" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Havalimanlari">
+          <Key>
+            <PropertyRef Name="HavalimaniId" />
+          </Key>
+          <Property Name="HavalimaniId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HavalimaniAdi" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Sehir" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="MusteriId" />
+          </Key>
+          <Property Name="MusteriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Soyadi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EvTel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CepTel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EvAdresi" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rezervasyon">
+          <Key>
+            <PropertyRef Name="RezId" />
+          </Key>
+          <Property Name="RezId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MusteriId" Type="int" Nullable="false" />
+          <Property Name="FiyatId" Type="int" Nullable="false" />
+          <Property Name="TransferTipi" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Tarih" Type="datetime" Nullable="false" />
+          <Property Name="Saat" Type="datetime" Nullable="false" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="DonusAdres" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="KayitAdres" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IpAdres" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CocukSayi" Type="int" Nullable="false" />
+          <Property Name="CocukKoltuk" Type="int" Nullable="false" />
+          <Property Name="VarisSaati" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DonusSaati" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UcusNo" Type="int" Nullable="false" />
+          <Property Name="DonusTarihi" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="VarisNoktalari">
+          <Key>
+            <PropertyRef Name="VarisNoktaId" />
+          </Key>
+          <Property Name="VarisNoktaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VarisNokta" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="HavaLimaniId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Fiyatlar_Araclar">
+          <End Role="Araclar" Type="Self.Araclar" Multiplicity="1" />
+          <End Role="Fiyatlar" Type="Self.Fiyatlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Araclar">
+              <PropertyRef Name="AracId" />
+            </Principal>
+            <Dependent Role="Fiyatlar">
+              <PropertyRef Name="AracId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fiyatlar_VarisNoktalari">
+          <End Role="VarisNoktalari" Type="Self.VarisNoktalari" Multiplicity="1" />
+          <End Role="Fiyatlar" Type="Self.Fiyatlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VarisNoktalari">
+              <PropertyRef Name="VarisNoktaId" />
+            </Principal>
+            <Dependent Role="Fiyatlar">
+              <PropertyRef Name="VarisNoktaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rezervasyon_Fiyatlar">
+          <End Role="Fiyatlar" Type="Self.Fiyatlar" Multiplicity="1" />
+          <End Role="Rezervasyon" Type="Self.Rezervasyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fiyatlar">
+              <PropertyRef Name="FiyatId" />
+            </Principal>
+            <Dependent Role="Rezervasyon">
+              <PropertyRef Name="FiyatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rezervasyon_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="Rezervasyon" Type="Self.Rezervasyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="MusteriId" />
+            </Principal>
+            <Dependent Role="Rezervasyon">
+              <PropertyRef Name="MusteriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VarisNoktalari_HavaLimanlari">
+          <End Role="Havalimanlari" Type="Self.Havalimanlari" Multiplicity="1" />
+          <End Role="VarisNoktalari" Type="Self.VarisNoktalari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Havalimanlari">
+              <PropertyRef Name="HavalimaniId" />
+            </Principal>
+            <Dependent Role="VarisNoktalari">
+              <PropertyRef Name="HavaLimaniId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TurizmDBModelStoreContainer">
+          <EntitySet Name="Araclar" EntityType="Self.Araclar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fiyatlar" EntityType="Self.Fiyatlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Havalimanlari" EntityType="Self.Havalimanlari" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rezervasyon" EntityType="Self.Rezervasyon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VarisNoktalari" EntityType="Self.VarisNoktalari" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Fiyatlar_Araclar" Association="Self.FK_Fiyatlar_Araclar">
+            <End Role="Araclar" EntitySet="Araclar" />
+            <End Role="Fiyatlar" EntitySet="Fiyatlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fiyatlar_VarisNoktalari" Association="Self.FK_Fiyatlar_VarisNoktalari">
+            <End Role="VarisNoktalari" EntitySet="VarisNoktalari" />
+            <End Role="Fiyatlar" EntitySet="Fiyatlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rezervasyon_Fiyatlar" Association="Self.FK_Rezervasyon_Fiyatlar">
+            <End Role="Fiyatlar" EntitySet="Fiyatlar" />
+            <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rezervasyon_Musteri" Association="Self.FK_Rezervasyon_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VarisNoktalari_HavaLimanlari" Association="Self.FK_VarisNoktalari_HavaLimanlari">
+            <End Role="Havalimanlari" EntitySet="Havalimanlari" />
+            <End Role="VarisNoktalari" EntitySet="VarisNoktalari" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TurizmDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Araclar">
+          <Key>
+            <PropertyRef Name="AracId" />
+          </Key>
+          <Property Name="AracId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AracTipi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaxKisi" Type="Int32" Nullable="false" />
+          <Property Name="MinKisi" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Fiyatlar" Relationship="Self.FK_Fiyatlar_Araclar" FromRole="Araclar" ToRole="Fiyatlar" />
+        </EntityType>
+        <EntityType Name="Fiyatlar">
+          <Key>
+            <PropertyRef Name="FiyatId" />
+          </Key>
+          <Property Name="FiyatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VarisNoktaId" Type="Int32" Nullable="false" />
+          <Property Name="AracId" Type="Int32" Nullable="false" />
+          <Property Name="Fiyat" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Araclar" Relationship="Self.FK_Fiyatlar_Araclar" FromRole="Fiyatlar" ToRole="Araclar" />
+          <NavigationProperty Name="VarisNoktalari" Relationship="Self.FK_Fiyatlar_VarisNoktalari" FromRole="Fiyatlar" ToRole="VarisNoktalari" />
+          <NavigationProperty Name="Rezervasyon" Relationship="Self.FK_Rezervasyon_Fiyatlar" FromRole="Fiyatlar" ToRole="Rezervasyon" />
+        </EntityType>
+        <EntityType Name="Havalimanlari">
+          <Key>
+            <PropertyRef Name="HavalimaniId" />
+          </Key>
+          <Property Name="HavalimaniId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HavalimaniAdi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sehir" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="VarisNoktalari" Relationship="Self.FK_VarisNoktalari_HavaLimanlari" FromRole="Havalimanlari" ToRole="VarisNoktalari" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="MusteriId" />
+          </Key>
+          <Property Name="MusteriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Soyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EvTel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CepTel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EvAdresi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Rezervasyon" Relationship="Self.FK_Rezervasyon_Musteri" FromRole="Musteri" ToRole="Rezervasyon" />
+        </EntityType>
+        <EntityType Name="Rezervasyon">
+          <Key>
+            <PropertyRef Name="RezId" />
+          </Key>
+          <Property Name="RezId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MusteriId" Type="Int32" Nullable="false" />
+          <Property Name="FiyatId" Type="Int32" Nullable="false" />
+          <Property Name="TransferTipi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Saat" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Adres" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DonusAdres" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KayitAdres" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IpAdres" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CocukSayi" Type="Int32" Nullable="false" />
+          <Property Name="CocukKoltuk" Type="Int32" Nullable="false" />
+          <Property Name="VarisSaati" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DonusSaati" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UcusNo" Type="Int32" Nullable="false" />
+          <Property Name="DonusTarihi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Fiyatlar" Relationship="Self.FK_Rezervasyon_Fiyatlar" FromRole="Rezervasyon" ToRole="Fiyatlar" />
+          <NavigationProperty Name="Musteri" Relationship="Self.FK_Rezervasyon_Musteri" FromRole="Rezervasyon" ToRole="Musteri" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="VarisNoktalari">
+          <Key>
+            <PropertyRef Name="VarisNoktaId" />
+          </Key>
+          <Property Name="VarisNoktaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VarisNokta" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HavaLimaniId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Fiyatlar" Relationship="Self.FK_Fiyatlar_VarisNoktalari" FromRole="VarisNoktalari" ToRole="Fiyatlar" />
+          <NavigationProperty Name="Havalimanlari" Relationship="Self.FK_VarisNoktalari_HavaLimanlari" FromRole="VarisNoktalari" ToRole="Havalimanlari" />
+        </EntityType>
+        <Association Name="FK_Fiyatlar_Araclar">
+          <End Role="Araclar" Type="Self.Araclar" Multiplicity="1" />
+          <End Role="Fiyatlar" Type="Self.Fiyatlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Araclar">
+              <PropertyRef Name="AracId" />
+            </Principal>
+            <Dependent Role="Fiyatlar">
+              <PropertyRef Name="AracId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fiyatlar_VarisNoktalari">
+          <End Role="VarisNoktalari" Type="Self.VarisNoktalari" Multiplicity="1" />
+          <End Role="Fiyatlar" Type="Self.Fiyatlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VarisNoktalari">
+              <PropertyRef Name="VarisNoktaId" />
+            </Principal>
+            <Dependent Role="Fiyatlar">
+              <PropertyRef Name="VarisNoktaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rezervasyon_Fiyatlar">
+          <End Role="Fiyatlar" Type="Self.Fiyatlar" Multiplicity="1" />
+          <End Role="Rezervasyon" Type="Self.Rezervasyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fiyatlar">
+              <PropertyRef Name="FiyatId" />
+            </Principal>
+            <Dependent Role="Rezervasyon">
+              <PropertyRef Name="FiyatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VarisNoktalari_HavaLimanlari">
+          <End Role="Havalimanlari" Type="Self.Havalimanlari" Multiplicity="1" />
+          <End Role="VarisNoktalari" Type="Self.VarisNoktalari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Havalimanlari">
+              <PropertyRef Name="HavalimaniId" />
+            </Principal>
+            <Dependent Role="VarisNoktalari">
+              <PropertyRef Name="HavaLimaniId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rezervasyon_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="Rezervasyon" Type="Self.Rezervasyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="MusteriId" />
+            </Principal>
+            <Dependent Role="Rezervasyon">
+              <PropertyRef Name="MusteriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TurizmDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Araclar" EntityType="Self.Araclar" />
+          <EntitySet Name="Fiyatlar" EntityType="Self.Fiyatlar" />
+          <EntitySet Name="Havalimanlari" EntityType="Self.Havalimanlari" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" />
+          <EntitySet Name="Rezervasyon" EntityType="Self.Rezervasyon" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="VarisNoktalari" EntityType="Self.VarisNoktalari" />
+          <AssociationSet Name="FK_Fiyatlar_Araclar" Association="Self.FK_Fiyatlar_Araclar">
+            <End Role="Araclar" EntitySet="Araclar" />
+            <End Role="Fiyatlar" EntitySet="Fiyatlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fiyatlar_VarisNoktalari" Association="Self.FK_Fiyatlar_VarisNoktalari">
+            <End Role="VarisNoktalari" EntitySet="VarisNoktalari" />
+            <End Role="Fiyatlar" EntitySet="Fiyatlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rezervasyon_Fiyatlar" Association="Self.FK_Rezervasyon_Fiyatlar">
+            <End Role="Fiyatlar" EntitySet="Fiyatlar" />
+            <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VarisNoktalari_HavaLimanlari" Association="Self.FK_VarisNoktalari_HavaLimanlari">
+            <End Role="Havalimanlari" EntitySet="Havalimanlari" />
+            <End Role="VarisNoktalari" EntitySet="VarisNoktalari" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rezervasyon_Musteri" Association="Self.FK_Rezervasyon_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TurizmDBModelStoreContainer" CdmEntityContainer="TurizmDBEntities">
+          <EntitySetMapping Name="Araclar">
+            <EntityTypeMapping TypeName="TurizmDBModel.Araclar">
+              <MappingFragment StoreEntitySet="Araclar">
+                <ScalarProperty Name="AracId" ColumnName="AracId" />
+                <ScalarProperty Name="AracTipi" ColumnName="AracTipi" />
+                <ScalarProperty Name="MaxKisi" ColumnName="MaxKisi" />
+                <ScalarProperty Name="MinKisi" ColumnName="MinKisi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fiyatlar">
+            <EntityTypeMapping TypeName="TurizmDBModel.Fiyatlar">
+              <MappingFragment StoreEntitySet="Fiyatlar">
+                <ScalarProperty Name="FiyatId" ColumnName="FiyatId" />
+                <ScalarProperty Name="VarisNoktaId" ColumnName="VarisNoktaId" />
+                <ScalarProperty Name="AracId" ColumnName="AracId" />
+                <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Havalimanlari">
+            <EntityTypeMapping TypeName="TurizmDBModel.Havalimanlari">
+              <MappingFragment StoreEntitySet="Havalimanlari">
+                <ScalarProperty Name="HavalimaniId" ColumnName="HavalimaniId" />
+                <ScalarProperty Name="HavalimaniAdi" ColumnName="HavalimaniAdi" />
+                <ScalarProperty Name="Sehir" ColumnName="Sehir" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Musteri">
+            <EntityTypeMapping TypeName="TurizmDBModel.Musteri">
+              <MappingFragment StoreEntitySet="Musteri">
+                <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+                <ScalarProperty Name="Soyadi" ColumnName="Soyadi" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EvTel" ColumnName="EvTel" />
+                <ScalarProperty Name="CepTel" ColumnName="CepTel" />
+                <ScalarProperty Name="EvAdresi" ColumnName="EvAdresi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rezervasyon">
+            <EntityTypeMapping TypeName="TurizmDBModel.Rezervasyon">
+              <MappingFragment StoreEntitySet="Rezervasyon">
+                <ScalarProperty Name="RezId" ColumnName="RezId" />
+                <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
+                <ScalarProperty Name="FiyatId" ColumnName="FiyatId" />
+                <ScalarProperty Name="TransferTipi" ColumnName="TransferTipi" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Saat" ColumnName="Saat" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="DonusAdres" ColumnName="DonusAdres" />
+                <ScalarProperty Name="KayitAdres" ColumnName="KayitAdres" />
+                <ScalarProperty Name="IpAdres" ColumnName="IpAdres" />
+                <ScalarProperty Name="CocukSayi" ColumnName="CocukSayi" />
+                <ScalarProperty Name="CocukKoltuk" ColumnName="CocukKoltuk" />
+                <ScalarProperty Name="VarisSaati" ColumnName="VarisSaati" />
+                <ScalarProperty Name="DonusSaati" ColumnName="DonusSaati" />
+                <ScalarProperty Name="UcusNo" ColumnName="UcusNo" />
+                <ScalarProperty Name="DonusTarihi" ColumnName="DonusTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TurizmDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VarisNoktalari">
+            <EntityTypeMapping TypeName="TurizmDBModel.VarisNoktalari">
+              <MappingFragment StoreEntitySet="VarisNoktalari">
+                <ScalarProperty Name="VarisNoktaId" ColumnName="VarisNoktaId" />
+                <ScalarProperty Name="VarisNokta" ColumnName="VarisNokta" />
+                <ScalarProperty Name="HavaLimaniId" ColumnName="HavaLimaniId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,51 @@
+﻿@model VarisNoktalari
+@{
+    ViewBag.Title = "UpdateHavalimani";
+    Layout = "~/Views/_MainLayout.cshtml";
+}
+
+<section class="content-header">
+    <h3>Varış Noktası Güncelle</h3>
+    <small class="text-primary">
+        <i class="fa fa-info-circle"></i>
+        Varış Noktası Güncelle
+    </small>
+</section>
+
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h4 class="card-title">Güncelle</h4>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("UpdateVarisNoktalari", "Default", FormMethod.Post))
+                    {
+                        <input type="hidden" name="VarisNoktaId" value="@Model.VarisNoktaId" />
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Varış Noktası</label>
+                            <div class="col-sm-8">
+                                <input value="@Model.VarisNokta" type="text" name="VarisNokta" class="form-control" placeholder="Varış Noktası..." />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Havalimanı ID</label>
+                            <div class="col-sm-8">
+                                <input value="@Model.HavaLimaniId" type="text" name="HavalimaniId" class="form-control" placeholder="Havalimanı Id..." />
+                            </div>
+                        </div>
+                        <div class="form-group float-right">
+                            <button class="btn btn-dark">Güncelle</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+</section>

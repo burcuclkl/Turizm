@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Araclar";
+    Layout = "~/Views/_MainLayout.cshtml";
+}
+
+<section class="content-header">
+    <h3>Araç Ekle</h3>
+    <small class="text-primary">
+        <i class="fa fa-info-circle"></i>
+        Araç Ekle
+    </small>
+</section>
+
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h4 class="card-title">Ekle</h4>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("AddAraclar", "Default", FormMethod.Post))
+                    {
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Araç Tipi</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="AracTipi" class="form-control" placeholder="Araç Tipi.." />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Max Kişi</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="MaxKisi" class="form-control" placeholder="Max Kişi..." />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Min Kişi</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="MinKisi" class="form-control" placeholder="Min Kişi..." />
+                            </div>
+                        </div>
+
+                        <div class="form-group float-right">
+                            <button class="btn btn-dark">Ekle</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+</section>
+
+
+

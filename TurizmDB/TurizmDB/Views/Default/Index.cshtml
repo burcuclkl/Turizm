@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_MainLayout.cshtml";
+}
+
+<section class="content-header">
+    <h3>Havalimanı Listesi</h3>
+    <small class="text-primary">
+        <i class="fa fa-info-circle"></i>
+        Havalimanı Ekle veya Güncelle
+    </small>
+</section>
+<section>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Şehir</th>
+                <th>Güncelle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Havalimanlari havalimani in ViewBag.Havalimanlari)
+            {
+                <tr>
+                    <td>@havalimani.HavalimaniId</td>
+                    <td>@havalimani.HavalimaniAdi</td>
+                    <td>@havalimani.Sehir</td>
+                    <td class="text-center">
+                        <a href="/Default/UpdateHavalimani?id=@havalimani.HavalimaniId" class="btn btn-sm btn-warning">
+                            <i class="fa fa-recycle"></i>Güncelle
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <hr />
+    <div class="row col-md-12">
+        <a href="/Default/Havalimanlari" class="btn btn-primary">Ekle
+        <i class="fa fa-plus-circle"></i></a>
+    </div>
+</section>
+

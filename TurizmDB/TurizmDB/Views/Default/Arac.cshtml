@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Arac";
+    Layout = "~/Views/_MainLayout.cshtml";
+}
+
+<section class="content-header">
+    <h3>Araç Listesi</h3>
+    <small class="text-primary">
+        <i class="fa fa-info-circle"></i>
+        Araç Ekle veya Güncelle
+    </small>
+</section>
+<section>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Arac Tipi</th>
+                <th>Max Kişi</th>
+                <th>Min Kişi</th>
+                <th>Güncelle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Araclar araclar in ViewBag.Araclar)
+            {
+                <tr>
+                    <td>@araclar.AracId</td>
+                    <td>@araclar.AracTipi</td>
+                    <td>@araclar.MaxKisi</td>
+                    <td>@araclar.MinKisi</td>
+                    <td class="text-center">
+                        <a href="/Default/UpdateArac?id=@araclar.AracId" class="btn btn-sm btn-warning">
+                            <i class="fa fa-recycle"></i>Güncelle
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <hr />
+    <div class="row col-md-12">
+        <a href="/Default/Araclar" class="btn btn-primary">
+            Ekle
+            <i class="fa fa-plus-circle"></i>
+        </a>
+    </div>
+</section>
